@@ -99,3 +99,32 @@ document.querySelector(id).scrollIntoView({
 })
   }
 });
+// const h1 = document.querySelector('h1');
+// console.log(h1.children);
+// console.log(h1.firstElementChild);
+// console.log(h1.lastElementChild);
+// console.log(h1.parentNode);
+// console.log(h1.parentElement);
+// h1.closest('.header').style.background ='var(--gradient-secondary)';
+// console.log(h1.previousElementSibling);
+// console.log(h1.nextElementSibling);
+
+// [...h1.parentElement.children].forEach(function(el){
+//   if(el != h1) el.style.transform = 'scale(.5)'
+// })
+
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabContent = document.querySelectorAll('.operations__content');
+
+tabsContainer.addEventListener('click',function(e){
+const clicked = e.target.closest('.operations__tab');
+if(!clicked) return;
+tabs.forEach(function(el){
+  el.classList.remove('operations__tab--active')
+})
+clicked.classList.add('operations__tab--active');
+tabContent.forEach((el) => el.classList.remove('operations__content--active'));
+document.querySelector(`.operations__content--${clicked.dataset.tab}`)
+.classList.add('operations__content--active');
+})
