@@ -5,7 +5,12 @@ const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 const btnScrollTo = document.querySelector('.btn--scroll-to');
-
+const nav = document.querySelector('.nav');
+const header = document.querySelector('.header');
+const message = document.createElement('div');
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabContent = document.querySelectorAll('.operations__content');
 ///////////////////////////////////////
 // Modal window
 
@@ -47,9 +52,7 @@ window.scrollTo({
 
 ///////////////////////////////////////
 // Adding New Element
-const header = document.querySelector('.header');
 
-const message = document.createElement('div');
 message.classList.add('cookie-message');
 message.innerHTML = `We use cookie for improved functionality
 and analytic. <button class="btn btn--close-cookie">Git it!</button>`
@@ -113,9 +116,7 @@ document.querySelector(id).scrollIntoView({
 //   if(el != h1) el.style.transform = 'scale(.5)'
 // })
 
-const tabs = document.querySelectorAll('.operations__tab');
-const tabsContainer = document.querySelector('.operations__tab-container');
-const tabContent = document.querySelectorAll('.operations__content');
+
 
 tabsContainer.addEventListener('click',function(e){
 const clicked = e.target.closest('.operations__tab');
@@ -128,3 +129,23 @@ tabContent.forEach((el) => el.classList.remove('operations__content--active'));
 document.querySelector(`.operations__content--${clicked.dataset.tab}`)
 .classList.add('operations__content--active');
 })
+const handleHover = function(e) {
+  if(e.target.classList.contains('nav__link')){
+    const link = e.target;
+    const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+    const logo = link.closest('.nav').querySelector('img');
+    siblings.forEach(el =>{
+      if (el !== link) el.style.opacity = this
+    })
+    logo.style.opacity = this
+  }
+}
+// nav.addEventListener('mouseover',function(e){
+//   handleHover(e,0.5)
+// });
+// nav.addEventListener('mouseout',function(e){
+//   handleHover(e,1)
+// });
+nav.addEventListener('mouseover',handleHover.bind(0.5));
+
+nav.addEventListener('mouseout',handleHover.bind(1));
