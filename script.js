@@ -291,3 +291,16 @@ e.key === 'ArrowRight' && nextslide();
  init();
 }
 slider();
+
+document.addEventListener('DOMContentLoaded',function(e){
+  console.log('HTml parsed and Dom tree build',e)
+});
+
+window.addEventListener('load', function(e){
+console.log('Page fully loaded', e);
+});
+
+window.addEventListener('beforeunload',function(e){
+e.preventDefault();
+e.returnValue = '';
+});
